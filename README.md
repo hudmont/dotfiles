@@ -1,7 +1,11 @@
 # dotfiles
 Config files for the window manager, keybindings, scripts.
 
-.xbindkeys.scm -> A rather compilcated config to be able to use emacs-style key sequences.
+.xbindkeys.scm -> A rather complicated config to be able to use emacs-style key sequences.
+
+[Special thanks to the author of this post](https://maskray.me/blog/2012-03-14-xbindkeys-key-sequence)
+
+
 
 Programs bound to keys:
  - rofi ( and the "dmenu" subfolder's contents )
