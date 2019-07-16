@@ -1,6 +1,5 @@
 # dotfiles
-Config files for the window manager, keybindings, scripts
+Config files for the window manager, keybindings, scripts.
 
-#test edit
+.xbindkeys.scm -> A rather compilcated config to be able to use emacs-style key sequences.
 
-gogogo
