@@ -1,0 +1,19 @@
+#/usr/bin/env bash
+if [[ "${#1}" -gt 30 ]];
+then
+  shown="${1:0:20}"..."${1:-7}"
+else
+  shown="$1"
+fi
+
+opener=$(printf "mpv\nmpv(loop)\nmpv(yt720p)\ncoub\nfeh\nwget\nbrowser" | rofi -dmenu -i -p "Open $shown with...")
+
+case "$opener" in
+  mpv)           mpv -quiet "$1" 2&>/dev/null & disown;;
+  "mpv(loop)")   mpv --quiet --loop "$1" 2&>/dev/null & disown;;
+  "mpv(yt720p)") mpv --quiet --ytdl-format 22 "$1" 2&>/dev/null & disown;;
+  coub)          ~/coub.sh "$1" & disown;;
+  feh)           feh "$1" 2&>/dev/null & disown;;
+  browser)       firefox "$1" 2&>/dev/null & disown;;
+  wget)          wget "$1" 2&>/dev/null & disown;;
+esac

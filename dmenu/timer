@@ -1,0 +1,5 @@
+#!/usrbin/env bash
+
+l=$(cat timers | rofi -dmenu -p "How long? ( in minutes )")
+
+sleep $(bc <<< '$l*60')

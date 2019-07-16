@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+sudo cpupower frequency-set \
+-g $(cat ~/dmenu/states | rofi -dmenu -i\
+-p "Which power state do you want to set?")
+sleep 1

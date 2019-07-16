@@ -1,0 +1,23 @@
+########################## Icon Manager ####################################
+# this FvwmIconMan setup is for swallowing in button bar example
+DestroyModuleConfig FvwmIconMan: *
+*FvwmIconMan: NumManagers 1
+*FvwmIconMan: Resolution  page
+*FvwmIconMan: Background  bisque3
+*FvwmIconMan: Foreground  black
+*FvwmIconMan: Font  xft:Liberation:Bold:size=10:antialias=True
+*FvwmIconMan: Format      "%c"
+*FvwmIconMan: Action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
+*FvwmIconMan: Action      Mouse   2 N sendcommand "Iconify 1"
+*FvwmIconMan: Action      Mouse   3 N sendcommand "FvwmIdent"
+*FvwmIconMan: FollowFocus true
+*FvwmIconMan: Sort        none
+*FvwmIconMan: IconButton          up black #e9a069
+*FvwmIconMan: PlainButton          up white #30619d
+*FvwmIconMan: SelectButton         down white #30619d
+*FvwmIconMan: FocusButton          up black #99e9e9
+*FvwmIconMan: FocusAndSelectButton down black #99e9e9
+*FvwmIconMan: DontShow icon=Untitled resource=Untitled
+#*FvwmIconMan: DrawIcons true
+*FvwmIconMan: ButtonGeometry  100x30
+*FvwmIconMan: ManagerGeometry 1x5

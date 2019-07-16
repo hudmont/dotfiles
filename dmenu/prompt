@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+[ $(cat yn | rofi -dmenu -p "$1") \
+== "Yes" ] && $2

@@ -1,0 +1,266 @@
+# death camp names
+
+DesktopName 0 Dubravlag
+DesktopName 1 Gorlag
+DesktopName 2 Dalstroy
+
+#DesktopName 0 Auschwitz
+#DesktopName 1 Chełmno
+#DesktopName 2 Majdanek
+#DesktopName 3 Sobibór
+#DesktopName 4 Bełżec
+#DesktopName 5 Treblinka
+DesktopSize 1x2
+
+#SetEnv fvwm_icon .fvwm/thumbnails
+
+###############################################################################
+#                                                                             #
+# Menus                                                                       #
+#                                                                             #
+###############################################################################
+
+AddToMenu Window-Ops
++ "$[gt.&Move]"              Move
++ "$[gt.&Resize]"            Resize
++ "$[gt.R&aise]"             Raise
++ "$[gt.&Lower]"             Lower
++ "$[gt.(De)&Iconify]"       Iconify
++ "$[gt.(Un)&Stick]"         Stick
++ "$[gt.(Un)Ma&ximize]"      Maximize
++ ""                         Nop
++ "$[gt.&Close]"             Close
++ "$[gt.&Destroy]"           Destroy
+#+ "Thumbnail"                Thumbnail
+
+
+AddToMenu RootMenu "Root Menu" Title
++ "AutoCon&figure screens" AutoConf
++ "Re&fresh Screen"        Refresh
++ "Re&start WM"		   Restart
++ "E&xit WM"		   Quit
+###############################################################################
+#                                                                             #
+# Keyboard & Mouse Bindings                                                   #
+#                                                                             #
+###############################################################################
+
+# Ignore the "Numlock" key so it does not interfere with keyboard shortcuts
+#
+IgnoreModifiers L2
+
+# keyboard shortcuts
+
+#Key K A CM            Close
+Key M A CM            Menu RootMenu Nop
+Key R A CM            Restart
+Key F1 Maximize
+Key Down	A 4 Iconify
+Key R		A 4 Raise
+#Key F6		A Close
+
+
+# Simple default mouse bindings for the root window:
+
+Mouse 1	R A           Menu RootMenu Nop
+Mouse 2	R A           Menu Window-Ops Nop
+#Mouse 3	R A           WindowList
+
+Mouse 1 A CM Scroll reverse
+
+# ... and for the title bar buttons:
+#
+Mouse 0	1 A           Menu Window-Ops Close
+Mouse 0	2 A           Maximize
+Mouse 0	4 A           Iconify
+
+# ... and other parts of the windows / borders / icons:
+#
+Mouse 1	FS A          Resize-or-Raise
+Mouse 1	T A           Move-or-Raise
+Mouse 1	I A           Move-or-Iconify
+Mouse 2	I A           Iconify
+Mouse 2	FST A         Menu Window-Ops Nop
+Mouse 3	TSIF A        RaiseLower
+
+# window placing and virtual desktop + page switching
+
+# for some reason, wmctrl cannot send to desk 0
+
+Silent Key Q WT S4 MoveToDesk 0 0
+Silent Key W WT S4 MoveToDesk 0 1
+Silent Key A WT S4 MoveToDesk 0 2
+
+#Silent Key W A 4 GotoPage 1 0
+#Silent Key E A 4 GotoPage 1 0
+#Silent Key S A 4 GotoPage 1 1
+#Silent Key D A 4 GotoPage 1 1
+
+#Silent Key W A S4 MoveToPage 1 0
+#Silent Key E A S4 MoveToPage 1 0
+#Silent Key S A S4 MoveToPage 1 1
+#Silent Key D A S4 MoveToPage 1 1
+
+#Silent Key 1 A S4 MoveToScreen 2
+#Silent Key 2 A S4 MoveToScreen 0
+
+# focus switching for cases when no mouse is present
+
+#Key KP_7    A S Direction NorthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_4    A S Direction West  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_1    A S Direction SouthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_8    A S Direction North  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_2    A S Direction South  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_9    A S Direction NorthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_3    A S Direction SouthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_6    A S Direction East  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+#Key KP_5    A S Direction Center (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+
+###############################################################################
+#                                                                             #
+# Custom Programs                                                             #
+#                                                                             #
+###############################################################################
+
+#InfoStoreAdd fileman "$[infostore.terminal] -e mc"
+#InfoStoreAdd pim "$[infostore.terminal] -e calcurse"
+#InfoStoreAdd youtube "gtk-youtube-viewer"
+#InfoStoreAdd chat "$(cat ~/dmenu/chat | rofi -dmenu -p 'Which chat program to start?')"
+#InfoStoreAdd editor emacs
+#InfoStoreAdd runner "rofi -show run -theme gruvbox-light-hard -font 'Liberation Mono 12'"
+#InfoStoreAdd keys 'setxkbmap $(cat ~/dmenu/keysets | rofi -dmenu -p "Setting the keyboard layout")'
+#InfoStoreAdd mnt '~/dmenu/mnt'
+#InfoStoreAdd state '$[infostore.terminal] -e ~/dmenu/setstate'
+
+###############################################################################
+#                                                                             #
+# Custom Functions                                                            #
+#                                                                             #
+###############################################################################
+DestroyFunc AutoConf
+AddToFunc AutoConf
++ I Exec exec ~/setmonitors.sh
++ I Exec Restart
+
+DestroyFunc ScreenShot
+AddToFunc ScreenShot
++ I Exec exec import -quality 100 -window root +repage ~/scrots/scrot_$(date +%Y%m%d%H%M%S).png
+
+DestroyFunc Move-or-Raise
+AddToFunc Move-or-Raise
++ H Move
++ M Move
++ C Raise
+
+DestroyFunc Move-or-Iconify
+AddToFunc Move-or-Iconify
++ I Raise
++ M Move
++ D Iconify
+
+DestroyFunc Resize-or-Raise
+AddToFunc Resize-or-Raise
++ H Resize $0
++ M Resize $0
++ C Raise
+
+#SetEnv fvwm_icon_size   150
+
+#DestroyFunc Thumbnail
+#AddToFunc   Thumbnail
+#+ I Raise
+#+ I SetEnv Icon-$[w.id] $[w.IconFile]
+#+ I ThisWindow (!Shaded, Iconifiable, !Iconic) PipeRead \
+#    "$~/.fvwm/thumb $[w.id] $[fvwm_icon_size] /dev/shm/icon.tmp.$[w.id].png $[w.IconFile]"
+#+ I Iconify
+
+#DestroyFunc DeThumbnail
+#AddToFunc   DeThumbnail
+#+ I PipeRead "echo WindowStyle IconOverride, Icon \\$\\[Icon-$[w.id]\\]"
+#+ I UnsetEnv Icon-$[w.id]
+#+ I Exec exec "rm -f /dev/shm/icon.tmp.$[w.id].png"
+
+#Style   *   EWMHMiniIconOverride, \
+#            Icon $[fvwm_icon]/fallback.png, \
+#            MiniIcon $[fvwm_icon]/fallbackmini.png
+
+#+ I Exec exec ogg123 -d esd $[fvwm_wave_path]/Popup.ogg
+
+###############################################################################
+#                                                                             #
+# Basic Style Settings                                                        #
+#                                                                             #
+###############################################################################
+
+DefaultFont xft:Liberation:Bold:size=12:antialias=True
+#DefaultFont xft:Inconsolata:Bold:size=12:antialias=True
+Emulate Mwm
+MenuStyle *Mwm
+Style * BorderWidth 6
+Style * HandleWidth 6
+Style * Font xft:Liberation:Bold:size=12:antialias=True
+Style * MwmBorder
+Style * MwmButtons
+Style * MwmDecor
+Style * MwmFunctions
+TitleStyle Centered Height 24
+
+CleanupColorsets
+
+ColorSet 0 fg \#ffffff, bg \#4992a7,
+ColorSet 1 fg \#ffffff, bg \#4992a7, hi \#adced8, sh \#182c48
+ColorSet 2 fg \#ffffff, bg maroon
+ColorSet 3 fg \#ffffff, bg \#4992a7,
+
+DefaultColorset 0
+Style * ColorSet 1
+Style * HilightColorset 2
+MenuStyle * MenuColorset 3
+
+###############################################################################
+#                                                                             #
+# Global Behavior Commands                                                    #
+#                                                                             #
+###############################################################################
+
+Style * !UsePPosition
+#FPLenient
+Style * HintOverride
+Style * DecorateTransient
+DestroyFunc UrgencyFunc
+Style * ClickToFocus
+
+EdgeResistance 25
+EdgeScroll 0 0
+Style * EdgeMoveDelay 250
+Style * EdgeMoveResistance 10
+
+Style * IconBox screen w 80 80 3000 200, IconGrid 3 3, IconFill Left Top
+
+#Iconbox -4000 80 1 1 
+
+Xinerama On
+#XineramaPrimaryscreen 0
+#EwmhBaseStruts 0 0 0 32
+
+###############################################################################
+#                                                                             #
+# Modules                                                          #
+#                                                                             #
+###############################################################################
+Style Fvwm* Sticky
+Style Fvwm* WindowListSkip
+Style Fvwm* !Title
+Style "*" ResizeHintOverride
+
+OpaqueMoveSize -1
+BugOpts RaiseOverUnmanaged on
+
+Module FvwmCommandS
+
+Read "ConfigFvwmButtons"
+Module FvwmButtons
+Read "ConfigFvwmIconMan"
+#Module FvwmIconMan
+Read "ConfigFvwmPager"
+#Module FvwmPager

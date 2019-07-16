@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+DRIVE=$(ls /dev/sd?? | rofi -dmenu -i -p "Which drive do you want to mount?")
+
+TARGET=$(cat ~/dmenu/mountdirs | rofi -dmenu -i -p "Where do you want to mount it?")
+
+[ "$DRIVE" != "" ] && [ "$TARGET" != "" ] \
+ && sudo mount "$DRIVE" "$TARGET"
