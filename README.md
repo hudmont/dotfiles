@@ -16,4 +16,11 @@ Programs bound to keys:
  - racket
  - pulseaudio ( pactl )
  
-
+Programs used by the dock on the right:
+ - wmmp
+ - wmamixer
+ - wmtimer
+ - wmweather
+ - wmifinfo
+ - wmcpufreq ( it needed a small edit to make it compile on modern systems )
+ - stalonetray
