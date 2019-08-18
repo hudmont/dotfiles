@@ -1,0 +1,44 @@
+XF86Audio{Prev,Next,Stop,Play}
+	mpc {prev,next,stop,toggle}
+	
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume 0 {+,-}5%
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+XF86{HomePage,Tools,Mail}
+	~/.config/switchto {firefox, gmpc,claws-mail}
+
+
+XF86Calculator
+	mlterm -e racket
+
+F8
+	mlterm
+F9
+	rofi -show run -theme base16-atelier-dune-light
+F10
+	wmctrl -xa emacs || emacs
+F12
+	mlterm -e ~/dmenu/setstate &
+F4
+	rofi -show window -theme base16-atelier-dune-light
+F6
+	wmctrl -c :ACTIVE:
+
+super + Return; super + KP_{End,Down,Next,Left,Begin,Right,Home,Up,Prior}
+      qdbus com.ssokolow.QuickTile /com/ssokolow/QuickTile doCommand  {bottom-left,bottom,bottom-right,left,middle,right,top-left,top,top-right}
+
+super + Return; KP_{Home,Prior,End,Next}
+      wmctrl -s {0,1,2,3}
+5
+
+super + Return; super +  KP_{7,9,1,3}
+      wmctrl -r :ACTIVE: -t {0,1,2,3}
+
+Insert
+      xdotool keyup Insert key --clearmodifiers Shift+Insert
+Pause
+      xdotool keyup Pause key --clearmodifiers ctrl+x
+Scroll_Lock
+      xdotool keyup Scroll_Lock key --clearmodifiers ctrl+c
