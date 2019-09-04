@@ -6,7 +6,9 @@ fi
 source $HOME/.config/helpers.sh
 source $HOME/.config/completion.sh
 
-PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+PLAN9=/home/bzs/src/plan9port
+export PLAN9
+PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH:$HOME/src/plan9port/bin"
 export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:

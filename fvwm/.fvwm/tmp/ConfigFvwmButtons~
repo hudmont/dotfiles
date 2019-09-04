@@ -1,0 +1,38 @@
+################## FvwmButtons button-bar ################################
+*----------------*----*----*---*-----------*
+*                *biff*clck*   *           *
+*  FvwmIconMan   *----*----* ^ *   Pager   *
+*                *  xload  *   *           *
+*----------------*----*----*---*-----------*
+KillModule FvwmButtons
+DestroyModuleConfig FvwmButtons: *
+*FvwmButtons: Geometry 190x1012-1+0
+*FvwmButtons: Back bisque3
+EwmhBaseStruts 0 203 0 0
+*FvwmButtons: (Frame 2, Padding 2 2, Container(Rows 2 Columns 9 Frame 1 Padding 10 0))
+
+*FvwmButtons: Columns 2
+*FvwmButtons: Rows 20
+
+# Show 5 more desks in a popup panel:
+# Unfortunately, a popup shows the desks 1 to 5, then 0
+*FvwmButtons: (2x5, Frame 2, Swallow "FvwmIconMan" "Module FvwmIconMan")
+*FvwmButtons: (2x1, Frame 0, Container(Rows 2 Columns 1 Frame 0))
+
+#*FvwmButtons: (Frame 2, Swallow(UseOld,NoHints,NoClose,Respawn) "tray" `Exec exec stalonetray`)
+
+*FvwmButtons: (2x1, Frame 2, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -digital -bg bisque3 -fg black -hd black -hl black -padding 7 -update 1 -strftime '  %Y. %b. %d. | %H : %M'`)
+*FvwmButtons: (2x1, Frame 2, Swallow(UseOld,NoHints,Respawn) "xload" `Exec exec xload -bg bisque3 -fg black -update 5 -nolabel`)
+*FvwmButtons: (End)
+*FvwmButtons: (2x7, Frame 3, Swallow(UseOld) "Inline" "Module FvwmPager Inline 0 5")
+*FvwmButtons: (End)
+
+DestroyModuleConfig Inline: *
+*Inline: Rows 6
+*Inline: Columns 1
+*Inline WindowBorderWidth 8
+*Inline: Window3DBorders
+#*Inline: DeskColor desk color
+
+# Use this command to start it:
+#Module FvwmButtons

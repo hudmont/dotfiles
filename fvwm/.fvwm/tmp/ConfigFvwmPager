@@ -1,0 +1,20 @@
+########################### Pager #########################################
+DestroyModuleConfig FvwmPager: *
+*FvwmPager: Back #908090
+*FvwmPager: Fore #484048
+*FvwmPager: Font  xft:Liberation:Bold:size=10:antialias=True
+# turn off desktop names for swallowing in above button bar example:
+*FvwmPager: Window3DBorders
+*FvwmPager: Font none
+*FvwmPager: Hilight #cab3ca
+*FvwmPager: Geometry -1-13
+*FvwmPager: SmallFont 5x8
+*FvwmPager: Balloons            All
+*FvwmPager: BalloonBack         Yellow
+*FvwmPager: BalloonFore         Black
+*FvwmPager: BalloonFont         liberationmono-12
+*FvwmPager: BalloonYOffset      +2
+*FvwmPager: BalloonBorderWidth  1
+*FvwmPager: BalloonBorderColor  Black
+*FvwmPager: Rows       1
+*FvwmPager: Columns    1

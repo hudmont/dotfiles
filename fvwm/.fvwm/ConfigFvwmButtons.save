@@ -1,0 +1,77 @@
+################## FvwmButtons button-bar 
+
+KillModule FvwmButtons
+DestroyModuleConfig FvwmButtons: *
+*FvwmButtons: Geometry 142x1012-1+0
+*FvwmButton: ColorSet 1 fg \#ddffdd, bg \#66aa77
+#*FvwmButtons: Back darkblue
+XEwmhBaseStruts 0 154 0 0
+
+*FvwmButtons: Columns 2
+*FvwmButtons: Rows 38
+
+*FvwmButtons: (2x38, Frame 1, Container(Rows 38 Columns 2 Frame 0))
+*FvwmButtons: (2x34, Frame 2, Padding 2 2, Container(Rows 34 Columns 2 Frame 1 Padding 10 0))
+
+
+#*FvwmButtons: (1x1, Frame dockapps)
+#*FvwmButtons: (1x1, Frame dockapps)
+*FvwmButtons: (1x2, Frame 2, Swallow(NoClose, UseOld) "wmtimer" `Exec exec wmtimer`)
+*FvwmButtons: (1x2, Frame 2, Swallow(NoClose, UseOld) "wmweather" `Exec exec wmweather -s LHBP`)
+*FvwmButtons: (1x2, Frame 2, Padding 3 3, Swallow(NoClose, UseOld) "WMmp" `Exec exec /usr/bin/WMmp`)
+*FvwmButtons: (1x2, Frame 2, Swallow(NoClose, UseOld) "wmifinfo" `Exec exec wmifinfo`)
+
+#*FvwmButtons: (1x2, Frame 2)
+#*FvwmButtons: (1x2, Frame 2)
+#*FvwmButtons: (1x2, Frame 2)
+#*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+*FvwmButtons: (1x2, Frame 2)
+#*FvwmButtons: (2x2, Frame 1)
+#*FvwmButtons: (2x1, Frame 1)
+#*FvwmButtons: (2x1, Frame 1)
+
+#*FvwmButtons: (1x1)
+#*FvwmButtons: (1x1)
+#*FvwmButtons: (1x1)
+#*FvwmButtons: (1x1)
+#*FvwmButtons: (1x1)
+
+
+#*Fvwm
+#Swallow "FvwmIconMan" "Module FvwmIconMan")
+#*FvwmButtons: (End)
+#*FvwmButtons: (2x2, Frame 0, Container(Rows 3 Columns 1 Frame 0))
+*FvwmButtons: (2x2, Frame 1, Swallow(NoClose,UseOld) "stalonetray" `Exec exec stalonetray -bg bisque3 -i 24 -geometry 5x2`)
+*FvwmButtons: (2x1, Frame 1, Swallow(NoHints,Respawn) "xclock" `Exec exec xclock -digital -bg bisque3 -fg black -hd black -hl black -padding 4 -update 1 -strftime '%Y.%m.%d %H:%M'`)
+*FvwmButtons: (2x1, Frame 1, Swallow(NoHints,Respawn) "xload" `Exec exec xload -bg bisque3 -fg black -update 5 -nolabel`)
+#*FvwmButtons: (End)
+
+#*FvwmButtons: (2x1, Frame 2)
+#Swallow(UseOld) "Inline" "Module FvwmPager Inline 0 0")
+#*FvwmButtons: (End)
+
+DestroyModuleConfig Inline: *
+*Inline: Rows 1
+*Inline: Columns 1
+*Inline WindowBorderWidth 8
