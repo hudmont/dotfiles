@@ -1,5 +1,9 @@
+IFS=$'\n\t'
+set -o pipefail
+
 if [[ $- != *i* ]] ; then
 	# Shell is non-interactive.  Be done now!
+	set -eu
 	return
 fi
 
@@ -135,22 +139,25 @@ function job_color()
         echo -en ${BCyan}
     fi
 }
-
-PS1="\[$(job_color)\]\u"
+#PS1="\[${Cyan}\$(date +%H:%M)${NC} \]"
+PS1="\[\$(job_color)\]\u"
 PS1=${PS1}"\[${NC}\]@"
-PS1=${PS1}"\[$(load_color)\]\h\[${NC}\]:"
-PS1=${PS1}"\[$(disk_color)\]\w\[${Red}\]☭\[${NC}\]"
+PS1=${PS1}"\[\$(load_color)\]\h\[${NC}\]:"
+PS1=${PS1}"\[\$(disk_color)\]\w\[${Red}\]☭\[${NC}\]"
 
 
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
 export HISTIGNORE="&:bg:fg:ll:h:ls:jobs"
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+
 export HISTTIMEFORMAT="$(echo -e ${BCyan})[%d/%m %H:%M:%S]$(echo -e ${NC}) "
 
 
 export HISTCONTROL=ignoredups
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 
-export EDITOR=emacs
+export EDITOR="emacs -nw"
 
 alias more='less'
 export PAGER=less

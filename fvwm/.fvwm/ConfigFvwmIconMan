@@ -6,8 +6,8 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: Background #2F4F4F
 *FvwmIconMan: Foreground white
 *FvwmIconMan: Highlight  #2F4F4F
-*FvwmIconMan: Font  xft:Liberation:Bold:size=10:antialias=True
-*FvwmIconMan: Format      "%c"
+*FvwmIconMan: Font  xft:Dejavu Sans Mono:Bold:size=7:antialias=True
+*FvwmIconMan: Format      "%i"
 *FvwmIconMan: Action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
 *FvwmIconMan: Action      Mouse   2 N sendcommand "Iconify 1"
 *FvwmIconMan: Action      Mouse   3 N sendcommand "FvwmIdent"
@@ -20,5 +20,5 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: FocusAndSelectButton down white maroon
 *FvwmIconMan: DontShow icon=Untitled resource=Untitled
 *FvwmIconMan: DrawIcons true
-*FvwmIconMan: ButtonGeometry  100x30
+*FvwmIconMan: ButtonGeometry  68x30
 *FvwmIconMan: ManagerGeometry 1x5

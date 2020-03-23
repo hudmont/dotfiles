@@ -1,9 +1,9 @@
-
+alias grep='grep --binary-files=text'
 
 # SHORT HISTORY ALIASES h() H()
 #alias h='< ~/.bash_history grep -i'
 #alias H='< ~/.bash_history grep'
-alias g='grep -i'
+alias g='grep -i '
 alias G='grep'
 
 # SHORT GREP FUNCTIONS c()
@@ -15,7 +15,12 @@ alias a=atool
 alias yt="mpv --ytdl-format 22"
 alias df='df -hT'
 alias du='du -hs'
+
 alias sbcl='rlwrap sbcl'
+alias clojure="rlwrap clojure"
+
+
+
 bold=$(tput bold)
 normal=$(tput sgr0)
 #alias ls=exa
@@ -29,6 +34,9 @@ alias debug="set -o nounset; set -o xtrace"
 
 alias source-highlight="source-highlight --style-css-file /usr/share/source-highlight/sh_easter.css"
 alias anime="torify youtube-dl"
+alias z='zathura'
+alias d="disown"
+
 
 alias mkdir='mkdir -p'
 alias h='history'
@@ -44,8 +52,6 @@ alias vf='cd'
 alias moer='more'
 alias moew='more'
 alias kk='ll'
-
-
 function xtitle()
 {
     case "$TERM" in
@@ -58,7 +64,7 @@ function xtitle()
 
 # Aliases that use xtitle
 alias top='xtitle Processes on $HOST && top'
-alias make='xtitle Making $(basename $PWD) ; make'
+alias make='xtitle Making 𓂸  $(basename $PWD) ; make'
 
 
 # SHORT QUERY FUNCTIONS q()
@@ -173,7 +179,7 @@ man() {
     LESS_TERMCAP_so=$'\e[01;44;33m' \
     LESS_TERMCAP_ue=$'\e[0m' \
     LESS_TERMCAP_us=$'\e[01;32m' \
-    xtitle The $(basename $1|tr -d .[:digit:]) manual
+    xtitle "The $(basename $1|tr -d .[:digit:]) manual"
     command man "$@"
 }
 
@@ -206,23 +212,8 @@ streamplay() {
 #fortune metal-fairy-tale
 
 transcode() {
-  ffmpeg -i "$1" -c:v libvpx-vp9 -crf $3 -qmin $3 -qmax $3 -b:v 0 -g 240 -auto-alt-ref 2 -lag-in-frames 25 -tile-columns 3 -threads 4 -row-mt 1 -frame-parallel 1 -quality good -speed 4 -pass 1 -an -f webm /dev/null
-  ffmpeg -i "$1" -c:v libvpx-vp9 -crf $3 -qmin $3 -qmax $3 -b:v 0 -g 240 -auto-alt-ref 2 -lag-in-frames 25 -tile-columns 3 -threads 4 -row-mt 1 -frame-parallel 1 -quality good -speed $4 -pass 1 -c:a libopus -b:a 96k -f webm "$2"
-}
-
-long() {
-   $@;
-#   espeak "bozd meg";
-    mpv ~/Japanese\ Temple\ Bell\ Small-SoundBible.com-113624364.opus > /dev/null;
-}
-
-xzmax(){
-     XZ_OPT="--lzma2=preset=9e,dict=512MB,nice=273,depth=200,lc=4" \
-     xz $@;
-}
-
-gogo(){
-  mpv "$(curl -s "$1" | grep  'var file = ' | awk -F\" '{print $2}')"
+  ffmpeg -i "$1" -c:v libvpx-vp9 -crf $3 -qmin $3 -qmax $3 -b:v 0 -g 240 -auto-alt-ref 2 -lag-in-frames 25 -tile-columns 4 -threads 16 -row-mt 1 -frame-parallel 1 -quality good -speed 4 -pass 1 -an -f webm /dev/null
+  ffmpeg -i "$1" -c:v libvpx-vp9 -crf $3 -qmin $3 -qmax $3 -b:v 0 -g 240 -auto-alt-ref 2 -lag-in-frames 25 -tile-columns 4 -threads 16 -row-mt 1 -frame-parallel 1 -quality good -speed $4 -pass 1 -c:a libopus -b:a 96k -f webm "$2"
 }
 
 gpu(){
