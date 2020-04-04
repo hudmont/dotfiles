@@ -17,13 +17,13 @@ complete -A directory   -o default cd
 # Compression
 complete -f -o default -X '*.+(zip|ZIP)'  zip atool
 complete -f -o default -X '!*.+(zip|ZIP)' unzip atool
-complete -f -o default -X '*.+(z|Z)'      compress atool
-complete -f -o default -X '!*.+(z|Z)'     uncompress atool
-complete -f -o default -X '*.+(gz|GZ)'    gzip atool
-complete -f -o default -X '!*.+(gz|GZ)'   gunzip atool
-complete -f -o default -X '*.+(bz2|BZ2)'  bzip2 atool lbzip2
-complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2 atool
-complete -f -o default -X '*.+(xz|XZ)' xz atool
+complete -f -o default -X '*.+(z|Z)'      compress atool tar
+complete -f -o default -X '!*.+(z|Z)'     uncompress atool tar
+complete -f -o default -X '*.+(gz|GZ)'    gzip atool tar
+complete -f -o default -X '!*.+(gz|GZ)'   gunzip atool tar
+complete -f -o default -X '*.+(bz2|BZ2)'  bzip2 atool lbzip2 tar
+complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2 atool tar
+complete -f -o default -X '*.+(xz|XZ)' xz atool tar
 complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2|xz|XZ)' atool
 
 
@@ -48,7 +48,7 @@ complete -f -o default -X \
 #complete -f -o default -X '!*.+(ogg|OGG)' 
 complete -f -o default -X \
 '!*.@(mp[23]|MP[23]|ogg|OGG|wav|WAV|pls|\
-m3u|xm|mod|s[3t]m|it|mtm|ult|flac)' mpv
+m3u|xm|mod|s[3t]m|it|mtm|ult|flac|opus)' mpv
 complete -f -o default -X '!*.@(mp?(e)g|MP?(E)G|wma|avi|AVI|\
 asf|vob|VOB|bin|dat|vcd|ps|pes|fli|viv|rm|ram|yuv|mov|MOV|qt|\
 QT|wmv|mp3|MP3|ogg|OGG|ogm|OGM|mp4|MP4|wav|WAV|asx|ASX)' mpv

@@ -1,3 +1,0 @@
-#/usr/bin/env bash
-cd /home/bzs
-wmctrl -xa $1 || $1

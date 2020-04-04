@@ -13,7 +13,8 @@ source $HOME/.config/completion.sh
 PLAN9=/home/bzs/src/plan9port
 export PLAN9
 PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH:$HOME/src/plan9port/bin"
-export PATH
+export PATH="/home/bzs/.config/guix/current/bin${PATH:+:}$PATH"
+#export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 #export SYSTEMD_PAGER=
@@ -157,7 +158,7 @@ export HISTTIMEFORMAT="$(echo -e ${BCyan})[%d/%m %H:%M:%S]$(echo -e ${NC}) "
 export HISTCONTROL=ignoredups
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 
-export EDITOR="emacs -nw"
+export EDITOR="nano"
 
 alias more='less'
 export PAGER=less

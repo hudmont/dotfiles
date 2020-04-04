@@ -1,17 +1,16 @@
 # death camp names
 
-DesktopName 0 Dubravny
+#DesktopName 0 Dubravny
 DesktopName 1 Gorny
 DesktopName 2 Dalstroy
 DesktopName 3 Vorkuta
 DesktopName 4 Kengir
 DesktopName 5 Yugorsk
-
-#DesktopName 0 Auschwitz
-#DesktopName 1 Chełmno
-#DesktopName 2 Majdanek
-#DesktopName 3 Sobibór
-#DesktopName 4 Bełżec
+#DesktopName 6 Auschwitz
+DesktopName 7 Chełmno
+DesktopName 8 Majdanek
+DesktopName 0 Sobibór
+DesktopName 6 Bełżec
 #DesktopName 5 Treblinka
 DesktopSize 3x3
 
@@ -32,6 +31,7 @@ AddToMenu Window-Ops
 + "$[gt.(De)&Iconify]"       Iconify
 + "$[gt.(Un)&Stick]"         Stick
 + "$[gt.(Un)Ma&ximize]"      Maximize
++ "$[gt.(Un)&Shade]"          WindowShade
 + ""                         Nop
 + "$[gt.&Delete]"	     Delete
 + "$[gt.&Close]"             Close
@@ -67,7 +67,8 @@ Key R		A CM Restart
 Key Up		A CM Maximize
 Key Down	A CM Iconify
 Key R		A CM Raise
-Key F4		A M Close
+Key F4		A  M Close
+
 Silent Key Tab A M WindowList Root SelectOnRelease Alt_L
 
 # Simple default mouse bindings for the root window:
@@ -80,9 +81,26 @@ Mouse 1 A CM Scroll reverse
 
 # ... and for the title bar buttons:
 #
-Mouse 0	1 A           Menu Window-Ops Close
-Mouse 0	2 A           Maximize
-Mouse 0	4 A           Iconify
+#Mouse 0	1 A           Menu Window-Ops Close
+#Mouse 0	2 A           Maximize
+#Mouse 0	4 A           Iconify
+
+Mouse 0 1 A       Menu Window-Ops
+
+#maximize button?
+Mouse 0 3 A       WindowShade
+
+# probably good
+Mouse 0 5 A       Stick
+
+#good graphics, wrong place
+Mouse 0 4 A       Iconify
+Mouse 1 2 A       Maximize
+Mouse 3 2 A       ThisWindow (Maximized) Maximize false
+Mouse 2 2 M       FullScreen
+
+#Mouse 0 3 A       MoveLower
+
 
 # ... and other parts of the windows / borders / icons:
 #
@@ -120,6 +138,46 @@ Key KP_6 A S TileRight
 Key KP_7 A S TileTopLeft
 Key KP_8 A S TileTop
 Key KP_9 A S TileTopRight
+
+Key KP_1 A 4 GotoDesk 0 0
+Key KP_2 A 4 GotoDesk 0 1
+Key KP_3 A 4 GotoDesk 0 2
+Key KP_4 A 4 GotoDesk 0 3
+Key KP_5 A 4 GotoDesk 0 4
+Key KP_6 A 4 GotoDesk 0 5
+Key KP_7 A 4 GotoDesk 0 6
+Key KP_8 A 4 GotoDesk 0 7
+Key KP_9 A 4 GotoDesk 0 8
+
+Key KP_1 A S4 Current MoveToDesk 0 0
+Key KP_2 A S4 Current MoveToDesk 0 1
+Key KP_3 A S4 Current MoveToDesk 0 2
+Key KP_4 A S4 Current MoveToDesk 0 3
+Key KP_5 A S4 Current MoveToDesk 0 4
+Key KP_6 A S4 Current MoveToDesk 0 5
+Key KP_7 A S4 Current MoveToDesk 0 6
+Key KP_8 A S4 Current MoveToDesk 0 7
+Key KP_9 A S4 Current MoveToDesk 0 8
+
+Key KP_1 A M GotoPage 2 0
+Key KP_2 A M GotoPage 1 2
+Key KP_3 A M GotoPage 2 2
+Key KP_4 A M GotoPage 0 1
+Key KP_5 A M GotoPage 1 1
+Key KP_6 A M GotoPage 2 1
+Key KP_7 A M GotoPage 0 0
+Key KP_8 A M GotoPage 1 0
+Key KP_9 A M GotoPage 2 0
+
+Key KP_1 A SM Current MoveToPage 2 0
+Key KP_2 A SM Current MoveToPage 1 2
+Key KP_3 A SM Current MoveToPage 2 2
+Key KP_4 A SM Current MoveToPage 0 1
+Key KP_5 A SM Current MoveToPage 1 1
+Key KP_6 A SM Current MoveToPage 2 1
+Key KP_7 A SM Current MoveToPage 0 0
+Key KP_8 A SM Current MoveToPage 1 0
+Key KP_9 A SM Current MoveToPage 2 0
 
 
 ###############################################################################
@@ -272,32 +330,61 @@ AddToFunc TileBottomRight
 #                                                                             #
 ###############################################################################
 
-DefaultFont "xft:Dejavu Sans Mono:size=12:antialias=True"
-Emulate Mwm
-MenuStyle * Mwm, ActiveFore White, TrianglesUseFore, TrianglesSolid
-
-Style *			Title, Handles, !MWMFunctions, NoDecorHint
-
-Style * BorderWidth 5
-Style * HandleWidth 5
-Style * Font "xft:Dejavu Sans Mono:size=12:antialias=True:"
-Style * MwmBorder
-Style * MwmButtons
-Style * MwmDecor
-Style * MwmFunctions
-TitleStyle Centered Height 20
 
 CleanupColorsets
-
-ColorSet 0 fg \#ffffff, bg \#8b008b,
-ColorSet 1 fg \#cfcfcf, bg \#8b008b, sh \#4b304b, hi \#bd7eb8
-ColorSet 2 fg \#000000, bg \#59a9ff
-#ColorSet 3 fg \#ffffff, bg \#4992a7,
-
 DefaultColorset 0
 Style * ColorSet 1
 Style * HilightColorset 2
-MenuStyle * MenuColorset 1
+MenuStyle * MenuColorset 3
+Style  * IconBackgroundColorset 0
+
+ColorSet 0 fg \#ffffff, bg \#4089a0
+ColorSet 1 fg \#ffffff, bg \#909090, hi \#c9c9c9, sh \#494949
+ColorSet 2 fg \#ffffff, bg \#e9a069, hi \#f0d0b9, sh \#795030
+ColorSet 3 fg \#ffffff, bg \#4089a0
+
+DefaultFont "xft:Dejavu Sans:size=10:antialias=True"
+Emulate Mwm
+MenuStyle * Mwm, ActiveFore White, TrianglesUseFore, TrianglesSolid
+
+Style *	Title, Handles, MWMFunctions, NoDecorHint
+
+Style * BorderWidth 5
+Style * HandleWidth 5
+Style * Font "xft:Dejavu Sans:size=10:antialias=True:"
+#
+#Style * MwmBorder
+Style * MwmButtons
+#Style * MwmDecor
+Style * MwmFunctions
+TitleStyle Centered Height 20
+
+
+ButtonStyle 1 - MWMDecorMenu
+ButtonStyle 2 - MWMDecorShade
+ButtonStyle 3 - MwmDecorStick
+#ButtonStyle 4 - Clear
+ButtonStyle 5 - MWMDecorMin
+ButtonStyle 6 - MWMDecorMax
+
+#ButtonStyle 1 - MWMDecorMenu
+#ButtonStyle 2 - Clear
+#ButtonStyle 3 - MWMDecorShade
+#ButtonStyle 4 - MwmDecorStick
+#ButtonStyle 5 - MWMDecorMax
+#ButtonStyle 6 - MWMDecorMin 
+
+DestroyModuleConfig FvwmBacker*
+*FvwmBacker: Command (Desk 0) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Romaion.pm
+*FvwmBacker: Command (Desk 1) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Rocks.pm
+*FvwmBacker: Command (Desk 2) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Cubes.pm
+*FvwmBacker: Command (Desk 3) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Antilop.pm
+*FvwmBacker: Command (Desk 4) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/ArabescaDark.pm
+*FvwmBacker: Command (Desk 5) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Rocks.pm
+*FvwmBacker: Command (Desk 6) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/ArtDeco.pm
+*FvwmBacker: Command (Desk 7) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/BrickWall.pm
+*FvwmBacker: Command (Desk 8) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/BrokenIce.pm
+
 
 ###############################################################################
 #                                                                             #
@@ -307,8 +394,8 @@ MenuStyle * MenuColorset 1
 
 Style * !UsePPosition
 Style * HintOverride
+Style "*" ResizeHintOverride
 Style * DecorateTransient
-DestroyFunc UrgencyFunc
 Style * ClickToFocus
 Style * !FPFocusByProgram
 Style * Lenience
@@ -319,10 +406,11 @@ EdgeScroll 0 0
 Style * EdgeMoveDelay 250
 Style * EdgeMoveResistance 10
 
-Style * IconBox screen w 5 5 90 -0, IconGrid 1 1, IconFill Left Bottom
+#Style * IconBox screen w 5 5 90 -0, IconGrid 1 1, IconFill Left Bottom
 IconFont "xft:Dejavu Sans:size=7:antialias=True"
 
 Xinerama On
+
 
 ###############################################################################
 #                                                                             #
@@ -332,17 +420,19 @@ Xinerama On
 Style Fvwm* Sticky
 Style Fvwm* WindowListSkip
 Style Fvwm* !Title
-Style "*" ResizeHintOverride
 
 OpaqueMoveSize -1
 BugOpts RaiseOverUnmanaged on
 
 Module FvwmCommandS
 
-#Read "ConfigFvwmButtons"
-#Module FvwmButtons
-#Read "ConfigFvwmIconBox"
-#Module FvwmIconBox
+Read "ConfigFvwmButtons"
+Module FvwmButtons
+
+Read "ConfigFvwmIconBox"
+
+Module FvwmBacker
+
 
 #Read "ConfigFvwmPager"
 #Module FvwmPager

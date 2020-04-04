@@ -2,7 +2,7 @@
 DestroyModuleConfig FvwmPager: *
 *FvwmPager: Fore grey
 *FvwmPager: Back #2F4F4F
-*FvwmPager: Font  xft:Liberation Mono:Bold:size=10:antialias=True
+*FvwmPager: Font  xft:Dejavu Sans:Book:size=8:antialias=True
 # turn off desktop names for swallowing in above button bar example:
 *FvwmPager: Window3DBorders
 #*FvwmPager: Font none
@@ -13,13 +13,13 @@ DestroyModuleConfig FvwmPager: *
 *FvwmPager: Hilight #2f4f4f
 
 *FvwmPager: Geometry -1-13
-*FvwmPager: SmallFont xft:Liberation Mono:Bold:size=8:antialias=True
+*FvwmPager: SmallFont xft:Dejavu Sans:Book:size=8:antialias=True
 *FvwmPager: Balloons            All
 *FvwmPager: BalloonBack         Yellow
 *FvwmPager: BalloonFore         Black
-*FvwmPager: BalloonFont         liberationmono-12
+#*FvwmPager: BalloonFont        	-12
 *FvwmPager: BalloonYOffset      +2
 *FvwmPager: BalloonBorderWidth  1
 *FvwmPager: BalloonBorderColor  Black
-*FvwmPager: Rows       6
+*FvwmPager: Rows       1
 *FvwmPager: Columns    1

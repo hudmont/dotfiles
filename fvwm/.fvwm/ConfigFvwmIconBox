@@ -10,9 +10,9 @@ DestroyModuleConfig FvwmIconBox: *
 *FvwmIconBox: IconHiBack  LightSkyBlue
 *FvwmIconBox: Back        #5f9ea0
 #*FvwmIconBox: Fore       blue
-*FvwmIconBox: Geometry    5x1+0+0
-*FvwmIconBox: MaxIconSize 64x38
-*FvwmIconBox: Font        xft:Dejavu Sans Mono:Bold:size=7:antialias=True
+*FvwmIconBox: Geometry    3x3+0+0
+*FvwmIconBox: MaxIconSize 64x64
+*FvwmIconBox: Font        xft:Dejavu Sans Mono:Bold:size=8:antialias=True
 *FvwmIconBox: SortIcons   IconName
 *FvwmIconBox: Padding     4
 *FvwmIconBox: Lines       10
