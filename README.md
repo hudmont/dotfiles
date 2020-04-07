@@ -1,13 +1,12 @@
 # dotfiles
 Config files for the window manager, keybindings, scripts.
 
-Uses sxhkd and actkbd
+Uses only fvwm actkbd to make keybindings.
 
 Programs bound to keys:
  - rofi ( and the "dmenu" subfolder's contents )
  - firefox
  - xterm
- - wmctrl
  - dbus-send & quicktile ( by using quicktile's dbus interface )
  - xdotool
  - thunderbird
