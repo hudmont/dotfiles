@@ -1,20 +1,4 @@
-# death camp names
-
-#DesktopName 0 Dubravny
-DesktopName 1 Gorny
-DesktopName 2 Dalstroy
-DesktopName 3 Vorkuta
-DesktopName 4 Kengir
-DesktopName 5 Yugorsk
-#DesktopName 6 Auschwitz
-DesktopName 7 Chełmno
-DesktopName 8 Majdanek
-DesktopName 0 Sobibór
-DesktopName 6 Bełżec
-#DesktopName 5 Treblinka
 DesktopSize 3x3
-
-#SetEnv fvwm_icon .fvwm/thumbnails
 
 ###############################################################################
 #                                                                             #
@@ -31,7 +15,7 @@ AddToMenu Window-Ops
 + "$[gt.(De)&Iconify]"       Iconify
 + "$[gt.(Un)&Stick]"         Stick
 + "$[gt.(Un)Ma&ximize]"      Maximize
-+ "$[gt.(Un)&Shade]"          WindowShade
++ "$[gt.(Un)&Shade]"         WindowShade
 + ""                         Nop
 + "$[gt.&Delete]"	     Delete
 + "$[gt.&Close]"             Close
@@ -43,12 +27,14 @@ AddToMenu Window-Ops
 #+ "&Print"                   PrintFunction
 #+  "&Print Reverse"          PrintReverseFunction
 
-
 AddToMenu RootMenu "Root Menu" Title
 + "Terminal" terminal
 + "Re&fresh Screen"        Refresh
 + "Re&start WM"		   Restart
 + "E&xit WM"		   Quit
+
+Read "DeskChanging"
+
 ###############################################################################
 #                                                                             #
 # Keyboard & Mouse Bindings                                                   #
@@ -57,17 +43,41 @@ AddToMenu RootMenu "Root Menu" Title
 
 # Ignore the "Numlock" key so it does not interfere with keyboard shortcuts
 #
-IgnoreModifiers L5
+IgnoreModifiers L25
 
 # keyboard shortcuts
 
-#Key K A CM            Close
+
 Key M		A CM Menu RootMenu Nop
 Key R		A CM Restart
 Key Up		A CM Maximize
 Key Down	A CM Iconify
 Key R		A CM Raise
 Key F4		A  M Close
+
+Key Num_Lock    A N StartQuery Gon
+Key Num_Lock    A 4 StartQuery Mov
+
+Key Scroll_Lock A N Exec lastsudo
+
+# XF86Audio{Prev,Next,Stop,Play}
+#	mocp {-r,-f,-s,-G}
+	
+# XF86Audio{Raise,Lower}Volume
+#	pactl set-sink-volume 0 {+,-}5%
+# XF86AudioMute
+#	pactl set-sink-mute 0 toggle
+
+Key XF86HomePage A N Exec exec switchto firefox
+Key XF86Mail     A N Exec exec switchto thunderbird
+Key XF86Tools    A N Exec exec xterm -e "mocp"
+Key XF86Calculator A N Exec exec xterm -e "rlwrap sbcl"
+
+#Print 
+
+#	import -quality 100 ~/scrots/scrot_$(date +%Y%m%d%H%M%S).webp
+
+
 
 Silent Key Tab A M WindowList Root SelectOnRelease Alt_L
 
@@ -86,16 +96,11 @@ Mouse 1 A CM Scroll reverse
 #Mouse 0	4 A           Iconify
 
 Mouse 0 1 A       Menu Window-Ops
-
-#maximize button?
 Mouse 0 3 A       WindowShade
-
-# probably good
 Mouse 0 5 A       Stick
-
-#good graphics, wrong place
 Mouse 0 4 A       Iconify
 Mouse 1 2 A       Maximize
+
 Mouse 3 2 A       ThisWindow (Maximized) Maximize false
 Mouse 2 2 M       FullScreen
 
@@ -111,14 +116,9 @@ Mouse 2	I A           Iconify
 Mouse 2	FST A         Menu Window-Ops Nop
 Mouse 3	TSIF A        RaiseLower
 
-# window placing and virtual desktop + page switching
-
-# for some reason, wmctrl cannot send to desk 0
-
-#Silent Key 1 A S4 MoveToScreen 2
-#Silent Key 2 A S4 MoveToScreen 0
 
 # focus switching for cases when no mouse is present
+# is in actkbd. Fuck 1keyb peasants.
 
 AddToFunc IncVerticalSize
 +  I ThisWindow (!Shaded, !Iconic) Resize keep w+10c   
@@ -138,47 +138,6 @@ Key KP_6 A S TileRight
 Key KP_7 A S TileTopLeft
 Key KP_8 A S TileTop
 Key KP_9 A S TileTopRight
-
-Key KP_1 A 4 GotoDesk 0 0
-Key KP_2 A 4 GotoDesk 0 1
-Key KP_3 A 4 GotoDesk 0 2
-Key KP_4 A 4 GotoDesk 0 3
-Key KP_5 A 4 GotoDesk 0 4
-Key KP_6 A 4 GotoDesk 0 5
-Key KP_7 A 4 GotoDesk 0 6
-Key KP_8 A 4 GotoDesk 0 7
-Key KP_9 A 4 GotoDesk 0 8
-
-Key KP_1 A S4 Current MoveToDesk 0 0
-Key KP_2 A S4 Current MoveToDesk 0 1
-Key KP_3 A S4 Current MoveToDesk 0 2
-Key KP_4 A S4 Current MoveToDesk 0 3
-Key KP_5 A S4 Current MoveToDesk 0 4
-Key KP_6 A S4 Current MoveToDesk 0 5
-Key KP_7 A S4 Current MoveToDesk 0 6
-Key KP_8 A S4 Current MoveToDesk 0 7
-Key KP_9 A S4 Current MoveToDesk 0 8
-
-Key KP_1 A M GotoPage 2 0
-Key KP_2 A M GotoPage 1 2
-Key KP_3 A M GotoPage 2 2
-Key KP_4 A M GotoPage 0 1
-Key KP_5 A M GotoPage 1 1
-Key KP_6 A M GotoPage 2 1
-Key KP_7 A M GotoPage 0 0
-Key KP_8 A M GotoPage 1 0
-Key KP_9 A M GotoPage 2 0
-
-Key KP_1 A SM Current MoveToPage 2 0
-Key KP_2 A SM Current MoveToPage 1 2
-Key KP_3 A SM Current MoveToPage 2 2
-Key KP_4 A SM Current MoveToPage 0 1
-Key KP_5 A SM Current MoveToPage 1 1
-Key KP_6 A SM Current MoveToPage 2 1
-Key KP_7 A SM Current MoveToPage 0 0
-Key KP_8 A SM Current MoveToPage 1 0
-Key KP_9 A SM Current MoveToPage 2 0
-
 
 ###############################################################################
 #                                                                             #
@@ -229,59 +188,8 @@ AddToFunc Resize-or-Raise
 
 #+ I Exec exec ogg123 -d esd $[fvwm_wave_path]/Popup.ogg
 
-DestroyFunc FocusWest
-AddToFunc FocusWest
-+ I Direction West (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
 
-
-DestroyFunc FocusEast
-AddToFunc FocusEast
-+ I Direction East (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusSouth
-AddToFunc FocusSouth
-+ I Direction South (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusCenter
-AddToFunc FocusCenter
-+ I Direction Center (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusNorth
-AddToFunc FocusNorth
-+ I Direction North (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusNorthWest
-AddToFunc FocusNorthWest
-+ I Direction NorthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusNorthEast
-AddToFunc FocusNorthEast
-+ I Direction NorthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusSouthWest
-AddToFunc FocusSouthWest
-+ I Direction SouthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
-
-DestroyFunc FocusSouthEast
-AddToFunc FocusSouthEast
-+ I Direction SouthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
-+ I Current Raise
-
+Read FuncsForActkbd
 
 DestroyFunc TileLeft
 AddToFunc TileLeft
@@ -323,7 +231,6 @@ AddToFunc TileBottomRight
 + I ThisWindow (!Shaded, !Iconic) Maximize 50 50
 + I ThisWindow (Maximized, !Shaded, !Iconic) Move -0 -0
 
-
 ###############################################################################
 #                                                                             #
 # Basic Style Settings                                                        #
@@ -348,6 +255,8 @@ Emulate Mwm
 MenuStyle * Mwm, ActiveFore White, TrianglesUseFore, TrianglesSolid
 
 Style *	Title, Handles, MWMFunctions, NoDecorHint
+
+Style Plasma NoTitle NoHandles
 
 Style * BorderWidth 5
 Style * HandleWidth 5
@@ -374,16 +283,16 @@ ButtonStyle 6 - MWMDecorMax
 #ButtonStyle 5 - MWMDecorMax
 #ButtonStyle 6 - MWMDecorMin 
 
-DestroyModuleConfig FvwmBacker*
-*FvwmBacker: Command (Desk 0) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Romaion.pm
-*FvwmBacker: Command (Desk 1) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Rocks.pm
-*FvwmBacker: Command (Desk 2) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Cubes.pm
-*FvwmBacker: Command (Desk 3) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Antilop.pm
-*FvwmBacker: Command (Desk 4) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/ArabescaDark.pm
-*FvwmBacker: Command (Desk 5) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Rocks.pm
-*FvwmBacker: Command (Desk 6) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/ArtDeco.pm
-*FvwmBacker: Command (Desk 7) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/BrickWall.pm
-*FvwmBacker: Command (Desk 8) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/BrokenIce.pm
+#DestroyModuleConfig FvwmBacker*
+#*FvwmBacker: Command (Desk 0) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Romaion.pm
+#*FvwmBacker: Command (Desk 1) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Rocks.pm
+#*FvwmBacker: Command (Desk 2) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Cubes.pm
+#*FvwmBacker: Command (Desk 3) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Antilop.pm
+#*FvwmBacker: Command (Desk 4) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/ArabescaDark.pm
+#*FvwmBacker: Command (Desk 5) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/Rocks.pm
+#*FvwmBacker: Command (Desk 6) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/ArtDeco.pm
+#*FvwmBacker: Command (Desk 7) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/BrickWall.pm
+#*FvwmBacker: Command (Desk 8) Exec fvwm-root $[HOME]/.local/NsCDE/share/backdrops/BrokenIce.pm
 
 
 ###############################################################################
@@ -426,8 +335,8 @@ BugOpts RaiseOverUnmanaged on
 
 Module FvwmCommandS
 
-Read "ConfigFvwmButtons"
-Module FvwmButtons
+#Read "ConfigFvwmButtons"
+#Module FvwmButtons
 
 Read "ConfigFvwmIconBox"
 

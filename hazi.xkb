@@ -1,0 +1,19 @@
+default  partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    include "nbsp(level2)"
+    include "altwin(meta_win)"
+    include "capslock(ctrl_modifier)"
+    include "us(intl-unicode)"
+    include "level3(ralt_switch_multikey)"
+
+    key <MENU> { [ Hyper_R ] };
+
+    replace key <LCTL> { [ Super_L ] };
+    replace key <RCTL> { [ Super_R ] };
+
+    modifier_map Mod1 { Alt, Alt_L };
+    modifier_map Mod2 { <META>, Meta_L, Meta_R };
+    modifier_map Mod3 { <MENU>, Hyper_R, Hyper_L };
+    modifier_map Mod4 { <LCTL>, <RCTL>, Super_L, Super_R };
+};

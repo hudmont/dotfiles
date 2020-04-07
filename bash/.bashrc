@@ -10,11 +10,11 @@ fi
 source $HOME/.config/helpers.sh
 source $HOME/.config/completion.sh
 
-PLAN9=/home/bzs/src/plan9port
-export PLAN9
-PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH:$HOME/src/plan9port/bin"
-export PATH="/home/bzs/.config/guix/current/bin${PATH:+:}$PATH"
-#export PATH
+#PLAN9=/home/bzs/src/plan9port
+#export PLAN9
+PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/home/bzs/.local/bin"
+#"$PATH:/sbin:/usr/sbin:$HOME/.local/bin"
+export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 #export SYSTEMD_PAGER=
@@ -161,11 +161,17 @@ export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 export EDITOR="nano"
 
 alias more='less'
-export PAGER=less
+#export PAGER=less
 
-export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
-:stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+#export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
+#:stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 
 
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-export LESS='-R '
+#export LESS='-R '
+
+#PATH="/home/bzs/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PERL5LIB="/home/bzs/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="/home/bzs/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+#PERL_MB_OPT="--install_base \"/home/bzs/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/home/bzs/perl5"; export PERL_MM_OPT;

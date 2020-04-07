@@ -9,7 +9,7 @@ alias G='grep'
 # SHORT GREP FUNCTIONS c()
 alias c='clear'
 alias ls='ls --color -h'
-#alias gls='ls -p -G --time-style=long-iso --group-directories-first --quoting-style=literal'
+alias gls='ls -p -G --time-style=long-iso --group-directories-first --quoting-style=literal'
 alias e='exa --time-style=long-iso --group-directories-first'
 alias a=atool
 alias yt="mpv --ytdl-format 22"
@@ -17,9 +17,6 @@ alias df='df -hT'
 alias du='du -hs'
 
 alias sbcl='rlwrap sbcl'
-alias clojure="rlwrap clojure"
-
-
 
 bold=$(tput bold)
 normal=$(tput sgr0)
@@ -64,7 +61,7 @@ function xtitle()
 
 # Aliases that use xtitle
 alias top='xtitle Processes on $HOST && top'
-alias make='xtitle Making 𓂸  $(basename $PWD) ; make'
+alias make='xtitle "Making $(basename $PWD)" ; make'
 
 
 # SHORT QUERY FUNCTIONS q()
