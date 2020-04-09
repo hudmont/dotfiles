@@ -13,5 +13,4 @@ xkbcomp hazi.xkb $DISPLAY
 
 xset r rate 200 60
 
-sxhkd & disown
 /usr/sbin/actkbd -D -d /dev/input/by-id/usb-LITE-ON_Technology_USB_NetVista_Full_Width_Keyboard.-event-kbd -c ~/dotfiles/actkbd.conf

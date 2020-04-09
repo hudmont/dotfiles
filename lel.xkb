@@ -1436,25 +1436,25 @@ xkb_symbols "pc+hazi+inet(evdev)+terminate(ctrl_alt_bksp)+terminate(ctrl_alt_bks
     };
     key <NMLK> {         [        Num_Lock ] };
     key <SCLK> {         [     Scroll_Lock ] };
-    key  <KP7> {         [         KP_7,            KP_Home ] };
-    key  <KP8> {         [           KP_8,            KP_Up ] };
-    key  <KP9> {         [        KP_9,            KP_Prior ] };
+    key  <KP7> {         [         KP_7 ] };
+    key  <KP8> {         [           KP_8 ] };
+    key  <KP9> {         [        KP_9 ] };
     key <KPSU> {
         type= "CTRL+ALT",
         symbols[Group1]= [     KP_Subtract,     KP_Subtract,     KP_Subtract,     KP_Subtract,  XF86Prev_VMode ]
     };
-    key  <KP4> {         [         KP_4,            KP_Left ] };
-    key  <KP5> {         [        KP_5,            KP_Begin ] };
-    key  <KP6> {         [        KP_6,            KP_Right ] };
+    key  <KP4> {         [         KP_4 ] };
+    key  <KP5> {         [        KP_5 ] };
+    key  <KP6> {         [        KP_6 ] };
     key <KPAD> {
         type= "CTRL+ALT",
         symbols[Group1]= [          KP_Add,          KP_Add,          KP_Add,          KP_Add,  XF86Next_VMode ]
     };
-    key  <KP1> {         [          KP_1,            KP_End ] };
-    key  <KP2> {         [         KP_2,            KP_Down ] };
-    key  <KP3> {         [         KP_3,            KP_Next ] };
-    key  <KP0> {         [       KP_0,            KP_insert ] };
-    key <KPDL> {         [       KP_Decimal,      KP_Delete ] };
+    key  <KP1> {         [          KP_1 ] };
+    key  <KP2> {         [         KP_2 ] };
+    key  <KP3> {         [         KP_3 ] };
+    key  <KP0> {         [       KP_0 ] };
+    key <KPDL> {         [       KP_Decimal ] };
     key <LVL3> {
         type= "ONE_LEVEL",
         symbols[Group1]= [ ISO_Level3_Shift ]
