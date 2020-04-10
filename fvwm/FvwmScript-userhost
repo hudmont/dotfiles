@@ -1,0 +1,25 @@
+WindowTitle {userhost}
+WindowSize  150 26
+Font "xft:DejaVu Sans Mono:style=Bold:size=12" 
+
+Init
+ Begin
+  Set $UH = (GetOutput {exec bash -c 'echo ☭bzs@gnulag☭'} 1 -1)
+  ChangeTitle 1 $UH
+End
+
+Widget 1
+Property
+ Position 0 0
+ Size 150 26
+ Font "xft:DejaVu Sans Mono:style=Bold:size=12"
+ Type ItemDraw
+ Flags NoReliefString
+ Title {}
+Main
+ Case message of
+  SingleClic :
+  Begin
+  End
+End
+

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpv "$(curl -s "$1" | grep  'var file = ' | awk -F\" '{print $2}')"

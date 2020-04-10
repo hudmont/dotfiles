@@ -1,0 +1,330 @@
+# death camp names
+
+DesktopName 0 Dubravny
+DesktopName 1 Gorny
+DesktopName 2 Dalstroy
+DesktopName 3 Vorkuta
+DesktopName 4 Kengir
+DesktopName 5 Yugorsk
+
+#DesktopName 0 Auschwitz
+#DesktopName 1 Chełmno
+#DesktopName 2 Majdanek
+#DesktopName 3 Sobibór
+#DesktopName 4 Bełżec
+#DesktopName 5 Treblinka
+DesktopSize 1x1
+
+#SetEnv fvwm_icon .fvwm/thumbnails
+
+###############################################################################
+#                                                                             #
+# Menus                                                                       #
+#                                                                             #
+###############################################################################
+
+AddToMenu Window-Ops
++ "$[gt.&Move]"              Move
++ "$[gt.&Resize]"            Resize
++ "$[gt.R&aise]"             Raise
++ "$[gt.&Lower]"             Lower
++ ""                         Nop
++ "$[gt.(De)&Iconify]"       Iconify
++ "$[gt.(Un)&Stick]"         Stick
++ "$[gt.(Un)Ma&ximize]"      Maximize
++ ""                         Nop
++ "$[gt.&Delete]"	     Delete
++ "$[gt.&Close]"             Close
++ "$[gt.&Destroy]"           Destroy
++ ""                         Nop
++ "$[gt.Re&fresh Screen]" Refresh
+
+#+ "&ScrollBar"               Module FvwmScroll 2 2
+#+ "&Print"                   PrintFunction
+#+  "&Print Reverse"          PrintReverseFunction
+
+
+AddToMenu RootMenu "Root Menu" Title
++ "Terminal" terminal
++ "Re&fresh Screen"        Refresh
++ "Re&start WM"		   Restart
++ "E&xit WM"		   Quit
+###############################################################################
+#                                                                             #
+# Keyboard & Mouse Bindings                                                   #
+#                                                                             #
+###############################################################################
+
+# Ignore the "Numlock" key so it does not interfere with keyboard shortcuts
+#
+IgnoreModifiers L5
+
+# keyboard shortcuts
+
+#Key K A CM            Close
+Key M		A CM Menu RootMenu Nop
+Key R		A CM Restart
+Key Up		A CM Maximize
+Key Down	A CM Iconify
+Key R		A CM Raise
+#Key F6		A Close
+Silent Key Tab A M WindowList Root SelectOnRelease Alt_L
+
+# Simple default mouse bindings for the root window:
+
+Mouse 1	R A           Menu RootMenu Nop
+Mouse 2	R A           Menu Window-Ops Nop
+Mouse 3	R A           WindowList
+
+Mouse 1 A CM Scroll reverse
+
+# ... and for the title bar buttons:
+#
+Mouse 0	1 A           Menu Window-Ops Close
+Mouse 0	2 A           Maximize
+Mouse 0	4 A           Iconify
+
+# ... and other parts of the windows / borders / icons:
+#
+Mouse 1	FS A          Resize-or-Raise
+Mouse 1	T A           Move-or-Raise
+Mouse 1	I A           Move-or-Iconify
+Mouse 2	I A           Iconify
+Mouse 2	FST A         Menu Window-Ops Nop
+Mouse 3	TSIF A        RaiseLower
+
+# window placing and virtual desktop + page switching
+
+# for some reason, wmctrl cannot send to desk 0
+
+Silent Key Q WT S4 MoveToDesk 0 0
+Silent Key W WT S4 MoveToDesk 0 1
+Silent Key E WT S4 MoveToDesk 0 2
+Silent Key A WT S4 MoveToDesk 0 3
+Silent Key S WT S4 MoveToDesk 0 4
+Silent Key D WT S4 MoveToDesk 0 5
+
+Silent Key Q A 4 GotoDesk 0 0
+Silent Key W A 4 GotoDesk 0 1
+Silent Key E A 4 GotoDesk 0 2
+Silent Key A A 4 GotoDesk 0 3
+Silent Key S A 4 GotoDesk 0 4
+Silent Key D A 4 GotoDesk 0 5
+
+#Silent Key 1 A S4 MoveToScreen 2
+#Silent Key 2 A S4 MoveToScreen 0
+
+# focus switching for cases when no mouse is present
+
+Key KP_7    A 4 Direction NorthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_4    A 4 Direction West  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_1    A 4 Direction SouthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_8    A 4 Direction North  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_2    A 4 Direction South  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_9    A 4 Direction NorthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_3    A 4 Direction SouthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_6    A 4 Direction East  (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+Key KP_5    A 4 Direction Center (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
+
+Key KP_1 A S TileBottomLeft
+Key KP_2 A S TileBottom
+Key KP_3 A S TileBottomRight
+Key KP_4 A S TileLeft
+Key KP_5 A S Maximize
+Key KP_6 A S TileRight
+Key KP_7 A S TileTopLeft
+Key KP_8 A S TileTop
+Key KP_9 A S TileTopRight
+
+
+###############################################################################
+#                                                                             #
+# Custom Functions                                                            #
+#                                                                             #
+###############################################################################
+DestroyFunc terminal
+AddToFunc terminal
++ I Exec exec xterm
+
+DestroyFunc Move-or-Raise
+AddToFunc Move-or-Raise
++ H Move
++ M Move
++ C Raise
+
+DestroyFunc Move-or-Iconify
+AddToFunc Move-or-Iconify
++ I Raise
++ M Move
++ D Iconify
+
+DestroyFunc Resize-or-Raise
+AddToFunc Resize-or-Raise
++ H Resize $0
++ M Resize $0
++ C Raise
+
+#SetEnv fvwm_icon_size   150
+
+#DestroyFunc Thumbnail
+#AddToFunc   Thumbnail
+#+ I Raise
+#+ I SetEnv Icon-$[w.id] $[w.IconFile]
+#+ I ThisWindow (!Shaded, Iconifiable, !Iconic) PipeRead \
+#    "$~/.fvwm/thumb $[w.id] $[fvwm_icon_size] /dev/shm/icon.tmp.$[w.id].png $[w.IconFile]"
+#+ I Iconify
+
+#DestroyFunc DeThumbnail
+#AddToFunc   DeThumbnail
+#+ I PipeRead "echo WindowStyle IconOverride, Icon \
+\
+$\
+\
+[Icon-$[w.id]\
+\
+]"
+#+ I UnsetEnv Icon-$[w.id]
+#+ I Exec exec "rm -f /dev/shm/icon.tmp.$[w.id].png"
+
+#Style   *   EWMHMiniIconOverride, \
+#            Icon $[fvwm_icon]/fallback.png, \
+#            MiniIcon $[fvwm_icon]/fallbackmini.png
+
+#+ I Exec exec ogg123 -d esd $[fvwm_wave_path]/Popup.ogg
+
+
+DestroyFunc TileLeft
+AddToFunc TileLeft
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 100
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move +0 +0
+
+DestroyFunc TileRight
+AddToFunc TileRight
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 100
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move -0 +0
+
+DestroyFunc TileTop
+AddToFunc TileTop
++ I ThisWindow (!Shaded, !Iconic) Maximize 100 50
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move +0 +0
+
+DestroyFunc TileBottom
+AddToFunc TileBottom
++ I ThisWindow (!Shaded, !Iconic) Maximize 100 50
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move +0 -0
+
+DestroyFunc TileTopLeft
+AddToFunc TileTopLeft
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 50
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move +0 +0
+
+DestroyFunc TileTopRight
+AddToFunc TileTopRight
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 50
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move -0 +0
+
+DestroyFunc TileBottomLeft
+AddToFunc TileBottomLeft
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 50
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move +0 -0
+
+DestroyFunc TileBottomRight
+AddToFunc TileBottomRight
++ I ThisWindow (!Shaded, !Iconic) Maximize 50 50
++ I ThisWindow (Maximized, !Shaded, !Iconic) Move -0 -0
+
+
+###############################################################################
+#                                                                             #
+# Basic Style Settings                                                        #
+#                                                                             #
+###############################################################################
+
+DefaultFont "xft:Dejavu Sans Mono:size=12:antialias=True"
+Emulate Mwm
+MenuStyle * Mwm, ActiveFore White, TrianglesUseFore, TrianglesSolid
+
+Style *			Title, Handles, !MWMFunctions, !DecorHint
+
+Style * BorderWidth 5
+Style * HandleWidth 5
+Style * Font "xft:Dejavu Sans Mono:size=12:antialias=True:
+Style * MwmBorder
+Style * MwmButtons
+Style * MwmDecor
+Style * MwmFunctions
+TitleStyle Centered Height 20
+
+CleanupColorsets
+
+ColorSet 0 fg \
+#ffffff, bg \
+#8b008b,
+ColorSet 1 fg \
+#cfcfcf, bg \
+#8b008b, sh \
+#4b304b, hi \
+#bd7eb8
+ColorSet 2 fg \
+#000000, bg \
+#59a9ff
+#ColorSet 3 fg \
+#ffffff, bg \
+#4992a7,
+
+DefaultColorset 0
+Style * ColorSet 1
+Style * HilightColorset 2
+MenuStyle * MenuColorset 1
+
+###############################################################################
+#                                                                             #
+# Global Behavior Commands                                                    #
+#                                                                             #
+###############################################################################
+
+Style * !UsePPosition
+Style * HintOverride
+Style * DecorateTransient
+DestroyFunc UrgencyFunc
+Style * ClickToFocus
+Style * !FPFocusByProgram
+Style * Lenience
+
+
+
+EdgeResistance 2
+Style * EdgeMoveResistance 5
+EdgeScroll 0 0
+Style * EdgeMoveDelay 250
+Style * EdgeMoveResistance 10
+
+Style * IconBox screen w 5 5 90 -0, IconGrid 1 1, IconFill Left Bottom
+IconFont "xft:Dejavu Sans:size=7:antialias=True"
+
+Xinerama On
+
+###############################################################################
+#                                                                             #
+# Modules                                                          #
+#                                                                             #
+###############################################################################
+Style Fvwm* Sticky
+Style Fvwm* WindowListSkip
+Style Fvwm* !Title
+Style "*" ResizeHintOverride
+
+OpaqueMoveSize -1
+BugOpts RaiseOverUnmanaged on
+
+Module FvwmCommandS
+
+#Read "ConfigFvwmButtons"
+#Module FvwmButtons
+#Read "ConfigFvwmIconBox"
+#Module FvwmIconBox
+
+#Read "ConfigFvwmPager"
+#Module FvwmPager
+
+#EwmhBaseStruts 0 0 40 0

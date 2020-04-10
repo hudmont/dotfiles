@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+file=$(basename "$1")
+
+wdir=$(mktemp -d) && {
+  cp "$1" "$wdir/$file";
+  cd $wdir
+  if [ -n "$(file \"$file\" | grep image | head -n 1)" ]
+  then
+    exiftool "$file" -all= > /dev/null 2> /dev/null || printf "exiftool doesn't like the filetype\n"
+  fi
+  #curl -F"file=@$file" https://0x0.st
+  curl -F"a=@$file" https://p.gnulag.net/
+
+};
+
+
+rm -r $wdir
+
+

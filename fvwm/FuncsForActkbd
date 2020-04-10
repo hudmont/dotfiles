@@ -1,0 +1,44 @@
+DestroyFunc FocusWest
+AddToFunc FocusWest
++ I Direction West (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusEast
+AddToFunc FocusEast
++ I Direction East (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusSouth
+AddToFunc FocusSouth
++ I Direction South (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusCenter
+AddToFunc FocusCenter
++ I Direction Center (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusNorth
+AddToFunc FocusNorth
++ I Direction North (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusNorthWest
+AddToFunc FocusNorthWest
++ I Direction NorthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusNorthEast
+AddToFunc FocusNorthEast
++ I Direction NorthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusSouthWest
+AddToFunc FocusSouthWest
++ I Direction SouthWest (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise
+
+DestroyFunc FocusSouthEast
+AddToFunc FocusSouthEast
++ I Direction SouthEast (CurrentGlobalPage, AcceptsFocus, !Iconic) FlipFocus
++ I Current Raise

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+TARGET=$(realpath "$1")
+DAY="$2"
+FORMAT="$3"
+
+if [ -z "$DAY" ]; then
+    DAY="$(ddate +%Y-%b-%d)"
+fi
+
+if [ -z "$FORMAT" ]; then
+    FORMAT="html"
+fi
+SRC="$HOME/saved-articles/$DAY"
+TEMP="$HOME/saved-articles/temp/$DAY"
+mkdir -p "$TEMP"
+
+for article in $SRC/*.org;
+do
+    pandoc -f org -t "$FORMAT" "$article" -o $TEMP/$(basename $article .org).$FORMAT;
+done
+mv "$TEMP" "$TARGET/";
+

@@ -1,0 +1,48 @@
+DestroyFunc StartQuery
+AddToFunc StartQuery
++ I InfoStoreAdd op $0
++ I Menu DeskChoice
+
+AddToMenu DeskChoice
++ "$[gt.&1]" Menu-Rope 0
++ "$[gt.&2]" Menu-Rope 1
++ "$[gt.&3]" Menu-Rope 2
++ ""         Nop
++ "$[gt.&4]" Menu-Rope 3
++ "$[gt.&5]" Menu-Rope 4
++ "$[gt.&6]" Menu-Rope 5
++ ""         Nop
++ "$[gt.&7]" Menu-Rope 6
++ "$[gt.&8]" Menu-Rope 7
++ "$[gt.&9]" Menu-Rope 8
+
+DestroyFunc Menu-Rope
+AddToFunc Menu-Rope
++  I InfoStoreAdd Desk $0
++  I Menu PageChoice Nop
+
+AddToMenu PageChoice
++ "$[gt.&1]" Short-Cut 0 2
++ "$[gt.&2]" Short-Cut 1 2
++ "$[gt.&3]" Short-Cut 2 2
++ ""         Nop
++ "$[gt.&4]" Short-Cut 0 1
++ "$[gt.&5]" Short-Cut 1 1
++ "$[gt.&6]" Short-Cut 2 1
++ ""         Nop
++ "$[gt.&7]" Short-Cut 0 0
++ "$[gt.&8]" Short-Cut 1 0
++ "$[gt.&9]" Short-Cut 2 0
+
+DestroyFunc Short-Cut
+AddToFunc Short-Cut
++  I $[infostore.op] $[infostore.Desk] $0 $1
+
+DestroyFunc Mov
+AddToFunc Mov
++ I Current MoveToDesk 0 $0
++ I Current MoveToPage $1 $2
+
+DestroyFunc Gon
+AddToFunc Gon
++ I GotoDeskAndPage $0 $1 $2

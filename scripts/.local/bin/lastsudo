@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+xdotool keyup Print type "sudo !!"
+xdotool key --clearmodifiers Return

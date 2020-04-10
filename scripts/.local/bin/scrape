@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+URL="$1"
+
+dirname="$HOME/saved-articles/$(ddate +%Y-%b-%d)"
+
+
+tmpfile=$(mktemp)
+
+mkdir -p "$dirname"
+
+
+
+~/src/web-reader-mode-scraper/index.js "$URL" | pandoc -f html-native_divs-native_spans -t org > "$tmpfile"
+
+filename=$(head -n 1 "$tmpfile" | sed -E "s/[[:space:]-]+/-/g" | sed  -E 's/[^A-Za-z0-9._-]//g' | tr '[:upper:]' '[:lower:]')
+tail -n +2 "$tmpfile" > "$dirname/$filename.org"
+
+
+rm "$tmpfile"
+

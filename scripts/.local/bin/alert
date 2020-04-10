@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpv $HOME/src/dotfiles/alert.opus > /dev/null;
